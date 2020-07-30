@@ -19,7 +19,7 @@ jobs:
       - name: Build
         run: echo "Building on ${{ matrix.os }}"
       - name: Upload build assets
-        uses: actions/upload-release-asset@v1
+        uses: ageorgou/upload-release-asset@debug
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
