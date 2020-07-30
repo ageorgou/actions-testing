@@ -27,4 +27,10 @@ jobs:
           Changes in this Release
           - First Change
           - Second Change
+    - name: Dispatch event to trigger upload
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        event-type: release_created
+        client-payload: '{"upload_url": "${{ steps.create_release.outputs.upload_url }}"}'
         
