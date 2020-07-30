@@ -22,11 +22,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.bump_version.outputs.new_tag }}
-        release_name: Release ${{ steps.bump_version.outputs.new_tag }} (${{ github.event.after }})
-        body: |
-          Changes in this Release
-          - First Change
-          - Second Change
+        release_name: Release ${{ steps.bump_version.outputs.new_tag }} (${{ github.sha }})
+        body: >
+            Latest change:
+            $ {{ github.event.commits[0][message] }}
     - name: Dispatch event to trigger upload
       uses: peter-evans/repository-dispatch@v1
       with:
